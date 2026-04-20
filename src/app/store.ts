@@ -1,7 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
+import portfolioReducer from "../pages/portfolio/slice/portfolioSlice";
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    portfolio: portfolioReducer,
+  },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
