@@ -1,5 +1,13 @@
+import StockLineChart from "../../components/StockLineChart";
+import VolumeChart from "../../components/VolumeBarChart";
+
 const Dashboard = () => {
-  return <div>Dashboard</div>;
+  return (
+    <div className="space-y-6 p-6 mt-10 flex flex-col gap-8 items-center justify-center">
+      <StockLineChart />
+      <VolumeChart />
+    </div>
+  );
 };
 
 export default Dashboard;
