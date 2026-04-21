@@ -7,24 +7,36 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { stockPrices } from "../data/mockStocks";
+import type { RootState } from "../app/store";
+import { useSelector } from "react-redux";
 
 export default function StockLineChart() {
-  return (
-    <div style={{ width: "70%", height: 300 }}>
-      <ResponsiveContainer aspect={2}>
-        <LineChart data={stockPrices}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="date" />
+  const stocks = useSelector((state: RootState) => state.portfolio);
 
+  const data = stocks.map((s: any) => ({
+    name: s.ticker,
+    value: s.currentPrice,
+  }));
+
+  return (
+    <div className="w-full">
+      <h2 className="text-center font-bold mb-2">
+        Stock Price Trend (Current Price)
+      </h2>
+
+      <ResponsiveContainer width="100%" aspect={2}>
+        <LineChart data={data}>
+          <CartesianGrid strokeDasharray="3 3" />
+
+          <XAxis dataKey="name" />
           <YAxis />
 
           <Tooltip />
 
           <Line
             type="monotone"
-            dataKey="price"
-            color="#2563eb"
+            dataKey="value"
+            stroke="#2563eb"
             strokeWidth={2}
           />
         </LineChart>

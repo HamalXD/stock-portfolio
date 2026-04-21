@@ -28,9 +28,24 @@ const portfolioSlice = createSlice({
       state.push(action.payload);
       saveToStorage(state);
     },
+    updateStock: (state, action: PayloadAction<TStocks>) => {
+      const index = state.findIndex((s) => s.id === action.payload.id);
+
+      if (index !== -1) {
+        state[index] = action.payload;
+        saveToStorage(state);
+      }
+    },
+
+    deleteStock: (state, action: PayloadAction<string>) => {
+      const updated = state.filter((s) => s.id !== action.payload);
+
+      saveToStorage(updated);
+      return updated;
+    },
   },
 });
 
-export const { addStock } = portfolioSlice.actions;
+export const { addStock, updateStock, deleteStock } = portfolioSlice.actions;
 
 export default portfolioSlice.reducer;

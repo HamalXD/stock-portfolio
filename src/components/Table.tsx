@@ -1,12 +1,13 @@
 import {
   useReactTable,
   getCoreRowModel,
+  flexRender,
   type ColumnDef,
 } from "@tanstack/react-table";
 
 interface TableProps<TData, TValue> {
-  columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  columns: ColumnDef<TData, TValue>[];
 }
 
 export default function Table<TData, TValue>({
@@ -26,7 +27,10 @@ export default function Table<TData, TValue>({
           <tr key={group.id}>
             {group.headers.map((header) => (
               <th key={header.id} className="border p-2">
-                {header.column.columnDef.header as string}
+                {flexRender(
+                  header.column.columnDef.header,
+                  header.getContext(),
+                )}
               </th>
             ))}
           </tr>
@@ -38,7 +42,7 @@ export default function Table<TData, TValue>({
           <tr key={row.id}>
             {row.getVisibleCells().map((cell) => (
               <td key={cell.id} className="border p-2">
-                {cell.getValue() as string}
+                {flexRender(cell.column.columnDef.cell, cell.getContext())}
               </td>
             ))}
           </tr>
