@@ -4,6 +4,6 @@ export type TStocks = {
   companyName: string;
   quantity: number;
   purchasePrice: number;
-  curretnPrice: number;
+  currentPrice: number;
   date: string;
 };

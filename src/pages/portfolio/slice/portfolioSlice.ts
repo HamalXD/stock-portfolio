@@ -1,9 +1,17 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { TStocks } from "../../../types";
+import { samplePortfolio } from "../../../data/portfolioTable";
 
 const loadFromStorage = (): TStocks[] => {
   const data = localStorage.getItem("portfolio");
-  return data ? JSON.parse(data) : [];
+
+  if (data) {
+    return JSON.parse(data);
+  }
+
+  localStorage.setItem("portfolio", JSON.stringify(samplePortfolio));
+
+  return samplePortfolio;
 };
 
 const saveToStorage = (stocks: TStocks[]) => {
