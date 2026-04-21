@@ -13,7 +13,7 @@ import { volumeData } from "../data/mockStocks";
 export default function VolumeChart() {
   return (
     <div style={{ width: "70%", height: 300 }}>
-      <ResponsiveContainer>
+      <ResponsiveContainer aspect={2}>
         <BarChart data={volumeData}>
           <CartesianGrid strokeDasharray="3 3" />
 

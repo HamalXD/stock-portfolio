@@ -3,7 +3,7 @@ import VolumeChart from "../../components/VolumeBarChart";
 
 const Dashboard = () => {
   return (
-    <div className="space-y-6 p-6 mt-10 flex flex-col gap-8 items-center justify-center">
+    <div className="space-y-6 p-6 mt-10 flex flex-col lg:flex-row items-center justify-center">
       <StockLineChart />
       <VolumeChart />
     </div>
